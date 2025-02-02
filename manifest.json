@@ -1,0 +1,24 @@
+{
+  "manifest_version": 3,
+  "name": "YouTube Cleaner",
+  "version": "1.0",
+  "description": "Elimina elementos específicos de YouTube.",
+  "permissions": ["storage", "scripting"],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/youtube16.png",
+      "48": "icons/youtube64.png",
+      "128": "icons/youtube128.png"
+    }
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["*://www.youtube.com/*"],
+      "js": ["content.js"]
+    }
+  ]
+}
