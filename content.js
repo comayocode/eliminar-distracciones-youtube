@@ -1,22 +1,24 @@
-// Función para eliminar elementos según las preferencias
+// Función para ocultar elementos según las preferencias
 function cleanYouTube() {
   // Enviar un mensaje al background.js para obtener las preferencias
   chrome.runtime.sendMessage({ action: 'getPreferences' }, (data) => {
     if (data.shortsHome) {
       const richSectionElements = document.querySelectorAll('ytd-rich-section-renderer.style-scope.ytd-rich-grid-renderer');
-      richSectionElements.forEach(element => element.remove());
-      console.log('Shorts en la página principal eliminados:', richSectionElements.length);
+      richSectionElements.forEach(element => {
+        element.style.display = 'none'; // Ocultar el elemento
+      });
     }
 
     if (data.shortsVideo) {
       const reelShelfElements = document.querySelectorAll('ytd-reel-shelf-renderer.style-scope.ytd-item-section-renderer');
-      reelShelfElements.forEach(element => element.remove());
-      console.log('Shorts en la vista de video eliminados:', reelShelfElements.length);
+      reelShelfElements.forEach(element => {
+        element.style.display = 'none'; // Ocultar el elemento
+      });
     }
   });
 }
 
-// Observar cambios en el DOM para eliminar elementos automáticamente
+// Observar cambios en el DOM para ocultar elementos automáticamente
 const observer = new MutationObserver((mutations) => {
   mutations.forEach(() => {
     cleanYouTube();
