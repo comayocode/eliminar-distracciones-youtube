@@ -19,6 +19,13 @@ function cleanYouTube() {
         }
       });
     }
+
+    if (data.hideRelatedVideos) {
+      const relatedVideosElement = document.querySelector('ytd-watch-flexy #columns #secondary');
+      if (relatedVideosElement && relatedVideosElement.style.display !== 'none') {
+        relatedVideosElement.style.display = 'none'; // Ocultar el elemento solo si no está ya oculto
+      }
+    }
   });
 }
 
